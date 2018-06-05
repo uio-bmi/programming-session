@@ -8,8 +8,7 @@ def old(data):
 
 
 def new(data):
-    """ TODO """
-    pass
+    return [element//2 for element in data if element % 2 == 0]
 
 
 if __name__ == "__main__":
