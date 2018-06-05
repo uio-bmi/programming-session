@@ -8,7 +8,8 @@ class Person:
 def old(data):
     age_dict = {}
     for person in data:
-        age_dict[person.name] = person.age
+        if person.age > 35:
+            age_dict[person.name] = person.age
     return age_dict
 
 
