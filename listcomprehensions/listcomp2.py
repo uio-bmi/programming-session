@@ -4,6 +4,8 @@ def old(data):
     for element in data:
         if element % 2 == 0:
             processed.append(element//2)
+        else:
+            processed.append(None)
     return processed
 
 
