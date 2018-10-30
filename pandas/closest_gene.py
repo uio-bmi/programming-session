@@ -7,11 +7,14 @@ def split_strands(df):
     return (df[pos], df[~pos])
 
 
-def find_closest(values, x, direction):
+def find_closest(values, x):
+    direction = values["strand"].iloc[0]
     a, b = ("end", "start")
-    if direction == 1:
+    if direction > 0:
         b, a = (a, b)
     idxs = values[a].searchsorted(x[b])
+    if direction < 0:
+        idxs += 1
     genes = values.iloc[idxs].copy()
     genes.index = x.index
     genes["dist"] = (genes[a]-x[b]).abs()
@@ -20,14 +23,10 @@ def find_closest(values, x, direction):
 
 @genome_binary
 def closest_gene(peaks, genes):
-    pos_genes, neg_genes = split_strands(genes)
-    pos_genes = pos_genes.sort_values(["start"])
-    neg_genes = neg_genes.sort_values(["end"])
-    closest_pos = find_closest(pos_genes, peaks, +1)
-    closest_neg = find_closest(neg_genes, peaks, -1)
-    assert closest_pos.index.equals(closest_neg.index), (closest_pos.index, closest_neg.index)
-    closest = closest_pos.where(closest_pos.dist < closest_neg.dist,
-                                closest_neg)
+    genes = genes.sort_values(["start"])
+    closest = genes.groupby("strand").apply(find_closest, peaks)
+    closest = closest.loc[1].where(closest.loc[1].dist < closest.loc[-1].dist,
+                                   closest.loc[-1])
     return pd.concat({"peak": peaks, "gene": closest},
                      axis=1)
 
