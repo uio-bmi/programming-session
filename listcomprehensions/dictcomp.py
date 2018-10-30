@@ -8,7 +8,7 @@ def old(data):
 
 def new(data):
     """ TODO """
-    pass
+    return {element: i for i, element in enumerate(data)}
 
 
 if __name__ == "__main__":

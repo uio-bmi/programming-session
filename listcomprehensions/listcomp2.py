@@ -11,8 +11,7 @@ def old(data):
 
 def new(data):
     """ TODO """
-    pass
-
+    return [e//2 if e % 2 == 0 else None for e in data]
 
 if __name__ == "__main__":
     data = list(range(10, 100, 3))

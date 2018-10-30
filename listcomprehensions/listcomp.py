@@ -9,10 +9,9 @@ def old(data):
 
 def new(data):
     """ TODO """
-    pass
-
+    return [e // 2 for e in data if e % 2 == 0]
 
 if __name__ == "__main__":
     data = list(range(10, 100, 3))
-    assert old(data) == new(data)
+    assert old(data) == new(data), (old(data), new(data))
     print("SUCSESS!")
