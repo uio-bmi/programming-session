@@ -13,6 +13,7 @@ def genome_binning(track, bin_size=1000000):
 
 
 if __name__ == "__main__":
-    from readtable import parse_genelist
-    genes = parse_genelist("genelist.tsv")
-    print(count_bin(genes))
+    from readtable import parse_genelist, parse_bed
+    peaks = parse_bed("../../phd/GFATools/data/ENCFF842YAM.bed")
+    #genes = parse_genelist("genelist.tsv")
+    count_bin(peaks)

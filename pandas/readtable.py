@@ -24,9 +24,3 @@ def parse_simple_bed(filename):
 
 if __name__ == "__main__":
     print(parse_genelist("genelist.tsv").head())
-    
-
-    # print(parse_bed("peaks.bed"))
-    # simple_df = parse_bed("peaks.bed")
-    # del simple_df["direction"]
-    # assert (parse_simple_bed("peaks.bed") == simple_df).all().all()

@@ -29,9 +29,8 @@ def quadratic_dict(nested_dict, x):
 
 
 def quadratic_dataframe(df, x):
-    "TODO: Implement this"
+    """TODO: Implement quadratic polynomial for each person"""
     pass
-
 
 
 assert (pd.Series(quadratic_dict(nested_dict, 10)) == quadratic_dataframe(df, 10)).all()

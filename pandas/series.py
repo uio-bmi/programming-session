@@ -3,6 +3,7 @@ import pandas as pd
 
 
 def simple_example(data):
+    print("SIMPLE EXAMPLE")
     array = np.array(data)
     series = pd.Series(data)
     print(array)
@@ -10,19 +11,22 @@ def simple_example(data):
 
 
 def index_example(data, index):
+    print("INDEX EXAMPLE")
     series = pd.Series(data, index=index)
     print(series)
 
 
 def dict_index_example(data):
+    print("DICT EXAMPLE")
+    print(data)
     series = pd.Series(data)
     print(series)
     return series
 
-
-simple_example([1, 2, 3, 4])
-gender = ["M", "M", "F", "M"]
-names = ["Knut", "GK", "Ying", "Chakri"]
-index_example(gender, names)
-series = dict_index_example(dict(zip(names, gender)))
-print(series["Knut"])
+if __name__ == "__main__":
+    gender = ["M", "M", "F", "M"]
+    names = ["Knut", "GK", "Ying", "Chakri"]
+    simple_example(gender)
+    index_example(gender, names)
+    series = dict_index_example(dict(zip(names, gender)))
+    print(series["Knut"])

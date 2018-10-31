@@ -2,11 +2,6 @@ import pandas as pd
 from util import genome_binary
 
 
-def split_strands(df):
-    pos = df["strand"] == 1
-    return (df[pos], df[~pos])
-
-
 def find_closest(values, x):
     direction = values["strand"].iloc[0]
     a, b = ("end", "start")
@@ -30,17 +25,6 @@ def closest_gene(peaks, genes):
     return pd.concat({"peak": peaks, "gene": closest},
                      axis=1)
 
-
-def genome_closest_gene_old(peaks, genes):
-    peak_groups = peaks.groupby("chrom")
-    gene_groups = genes.groupby("chrom")
-    return pd.concat({name: closest_gene(group, genes.loc[gene_groups.groups[name]])
-                      for name, group in peak_groups})
-
-
-def genome_closest_gene(peaks, genes):
-    return pd.concat([closest_gene(peaks.loc[chrom], genes.loc[chrom])
-                      for chrom in peaks.index.unique()])
 
 if __name__ == "__main__":
     from readtable import parse_genelist, parse_bed
