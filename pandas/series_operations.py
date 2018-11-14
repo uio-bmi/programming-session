@@ -26,7 +26,7 @@ def quadratic_dict(a, b, c, x):
 
 def quadratic_series(a, b, c, x):
     "TODO: Implement this"
-    pass
+    return a*x*x + b*x + c
 
 
 
